@@ -13,3 +13,4 @@ nav{display:flex;gap:14px;font-size:13px}nav a:hover{color:#da6a00}.cartBtn{bord
 .toast{position:fixed;top:88px;left:50%;transform:translateX(-50%);background:#111;color:#fff;border-radius:999px;padding:8px 12px;font-size:13px;z-index:90}footer{text-align:center;color:#7d624f;padding:10px 4vw}
 @media(max-width:1000px){nav{display:none}.sellerRow,.productGrid{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:repeat(2,1fr)}.categoryTiles{grid-template-columns:repeat(3,1fr)}.hero{grid-template-columns:1fr}.hero img{height:270px}}
 @media(max-width:640px){.sellerRow,.productGrid,.trust,.categoryTiles,.feature,.instaStrip{grid-template-columns:1fr}.sectionHead{flex-direction:column;align-items:stretch}.sectionHead input{width:100%}}
+
