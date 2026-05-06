@@ -40,11 +40,8 @@ export default function App() {
     const cards = document.querySelectorAll(".reveal");
     const obs = new IntersectionObserver((entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("show")), { threshold: 0.18 });
     cards.forEach((x) => obs.observe(x));
-    const cursor = document.querySelector(".luxCursor");
-    const move = (ev) => { if (cursor) { cursor.style.left = `${ev.clientX - 7}px`; cursor.style.top = `${ev.clientY - 7}px`; } };
-    window.addEventListener("mousemove", move);
     window.addEventListener("scroll", onScroll);
-    return () => { window.removeEventListener("mousemove", move); window.removeEventListener("scroll", onScroll); obs.disconnect(); };
+    return () => { window.removeEventListener("scroll", onScroll); obs.disconnect(); };
   }, []);
 
   const filtered = useMemo(() => products.filter((p) => (active === "Shop" || p.section === active) && `${p.name} ${p.audience} ${p.tags.join(" ")}`.toLowerCase().includes(search.toLowerCase())), [active, search]);
@@ -56,7 +53,7 @@ export default function App() {
   const qty = (id, amount) => setCart((old) => old.map((x) => (x.id === id ? { ...x, qty: Math.max(1, x.qty + amount) } : x)));
   const remove = (id) => setCart((old) => old.filter((x) => x.id !== id));
 
-  return <div className="site">{toast && <div className="toast">{toast}</div>}<div className="luxCursor" />
+  return <div className="site">{toast && <div className="toast">{toast}</div>}
     <header className={`topbar ${scrolled ? "scrolled" : ""}`}><a className="brand" href="#home"><img src="/assets/logo-974.png" alt="logo" /><span><b>974 Perfumes</b><small>Qatar</small></span></a><nav>{filters.map((f) => <a key={f} href="#shop" onClick={() => setActive(f)}>{f}</a>)}<a href={IG} target="_blank" rel="noreferrer">Instagram</a></nav><button className="cartBtn" onClick={() => setOpen(true)}>Cart <b>{count}</b></button></header>
     <main id="home">
       <section className="hero reveal"><img src="/assets/bottle-974.png" alt="Essence of Luxury" onError={imgFallback} /><div><p className="kicker">974 Perfumes Qatar</p><h1>The Scent of Qatar.</h1><p>Experience the fusion of tradition and futuristic luxury.</p><a className="glassBtn" href="#shop">Shop Now</a></div></section>
@@ -64,7 +61,7 @@ export default function App() {
       <section className="best reveal"><div className="head"><h2>Featured Scents</h2></div><div className="sellerRow">{bestSellers.map((p) => <article className="sellerCard" key={p.id}><img src={p.image} alt={p.name} style={{ objectPosition: p.pos }} onError={imgFallback} /><h4>{p.name}</h4><p>{p.size} • QAR {p.price}</p><button onClick={() => add(p)}>Add to Cart</button></article>)}</div></section>
       <section id="shop" className="shop reveal"><div className="head"><h2>Product Discovery</h2><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search notes" /></div><div className="filters">{filters.map((c) => <button key={c} className={active === c ? "active" : ""} onClick={() => setActive(c)}>{c}</button>)}</div><div className="productGrid">{filtered.map((p) => <article className="product" key={p.id}><div className="photo"><span>{p.badge}</span><img src={p.image} alt={p.name} style={{ objectPosition: p.pos }} onError={imgFallback} /></div><div className="info"><small>Inspired Perfume Oil</small><h3>{p.name}</h3><p>{p.audience} • {p.size}</p><div className="tags">{p.tags.map((t) => <em key={t}>{t}</em>)}</div><div className="buy"><strong>QAR {p.price}</strong><button onClick={() => add(p)}>Add to Cart</button></div></div></article>)}</div></section>
       <section className="story reveal"><img src="/assets/instagram-grid.png" alt="Doha style" onError={imgFallback} /><div><p className="kicker">Our Story</p><h3>Born in Qatar, crafted for presence.</h3><p>974 Perfumes blends inspired scent artistry with local identity and modern elegance.</p></div></section>
-      <section className="gift reveal"><img src="/assets/instagram-grid.png" alt="gift" onError={imgFallback} /><div><p className="kicker">Gift Set Spotlight</p><h3>Luxury Gift Set — QAR 200</h3><button onClick={() => add(products.find((p) => p.id === 10))}>Add Gift Set</button></div></section>
+      <section className="gift reveal"><img src="/assets/instagram-grid.png" alt="gift" onError={imgFallback} /><div><p className="kicker">Gift Set Spotlight</p><h3>Luxury Gift Set — QAR 200</h3><p>Curated presentation for premium gifting in Qatar.</p><button onClick={() => add(products.find((p) => p.id === 10))}>Buy Now</button></div></section>
     </main>
     <aside className={`drawer ${open ? "show" : ""}`}><div className="drawerHead"><h2>Your cart</h2><button onClick={() => setOpen(false)}>×</button></div>{!cart.length ? <p className="empty">Your cart is empty.</p> : <div className="cartItems">{cart.map((i) => <div className="cartItem" key={i.id}><div><b>{i.name}</b><span>{i.size} • QAR {i.price}</span></div><div className="qty"><button onClick={() => qty(i.id, -1)}>-</button><span>{i.qty}</span><button onClick={() => qty(i.id, 1)}>+</button><button className="remove" onClick={() => remove(i.id)}>×</button></div></div>)}</div>}<div className="total"><span>Total</span><b>QAR {total}</b></div><a className="whatsapp" href={`https://wa.me/${WHATSAPP}?text=${whatsappText(cart)}`} target="_blank" rel="noreferrer">Checkout on WhatsApp</a></aside>
   </div>;
