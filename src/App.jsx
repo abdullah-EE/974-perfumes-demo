@@ -59,6 +59,7 @@ export default function App() {
         <nav>{filters.map((f) => <a key={f} href="#shop" onClick={() => setActive(f)}>{f}</a>)}<a href={IG} target="_blank" rel="noreferrer">Instagram</a></nav>
         <button className="cartBtn" onClick={() => setOpen(true)}>Cart <b>{count}</b></button>
       </header>
+
       <main id="home">
         <section className="hero">
           <div><p className="kicker">Affordable inspired perfume oils</p><h1>Premium scent feel. Everyday Qatar prices.</h1><p>50ml QAR 45 • 100ml QAR 65 • Gift Set QAR 200</p><div className="actions"><a className="primary" href="#shop">Shop now</a><a className="secondary" href={`https://wa.me/${WHATSAPP}?text=${whatsappText(cart)}`} target="_blank" rel="noreferrer">WhatsApp Order</a></div></div>
