@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "preview": "vite preview --host 0.0.0.0",
+    "check:conflicts": "! rg -n \"<<<<<<<|=======|>>>>>>>\" src/App.jsx src/styles.css"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
