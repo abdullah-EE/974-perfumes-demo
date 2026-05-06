@@ -69,3 +69,4 @@ export default function App() {
     <aside className={`drawer ${open ? "show" : ""}`}><div className="drawerHead"><h2>Your cart</h2><button onClick={() => setOpen(false)}>×</button></div>{!cart.length ? <p className="empty">Your cart is empty.</p> : <div className="cartItems">{cart.map((i) => <div className="cartItem" key={i.id}><div><b>{i.name}</b><span>{i.size} • QAR {i.price}</span></div><div className="qty"><button onClick={() => qty(i.id, -1)}>-</button><span>{i.qty}</span><button onClick={() => qty(i.id, 1)}>+</button><button className="remove" onClick={() => remove(i.id)}>×</button></div></div>)}</div>}<div className="total"><span>Total</span><b>QAR {total}</b></div><a className="whatsapp" href={`https://wa.me/${WHATSAPP}?text=${whatsappText(cart)}`} target="_blank" rel="noreferrer">Checkout on WhatsApp</a></aside>
   </div>;
 }
+
