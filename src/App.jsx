@@ -4,8 +4,8 @@ const WHATSAPP = "97430630135";
 const IG = "https://www.instagram.com/974perfumes/";
 
 const imagePool = {
-  bottle: "/assets/bottle-974.png",
-  gift: "/assets/logo-974.png",
+  bottle: "/assets/974 photo 3.jpeg",
+  gift: "/assets/974 photo 4.jpeg",
   social: "/assets/instagram-grid.png",
   heroVideo: "/assets/hero-video.mp4.mp4",
   scentAtmosphere: "/assets/product-water-orange.jpg.jpeg",
