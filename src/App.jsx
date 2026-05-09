@@ -4,10 +4,12 @@ const WHATSAPP = "97430630135";
 const IG = "https://www.instagram.com/974perfumes/";
 
 const imagePool = {
-  hero: "/assets/bottle-974.png",
-  bottle: "/assets/bottle-974.png",
-  gift: "/assets/logo-974.png",
-  social: "/assets/instagram-grid.png"
+  bottle: "/assets/974 photo 3.jpeg",
+  gift: "/assets/974 photo 4.jpeg",
+  social: "/assets/instagram-grid.png",
+  heroVideo: "/assets/hero-video.mp4.mp4",
+  scentAtmosphere: "/assets/product-water-orange.jpg.jpeg",
+  footerVisual: "/assets/footer-rock-orange.jpg.jpeg"
 };
 
 const products = [
@@ -75,27 +77,32 @@ export default function App() {
 
     <main id="home">
       <section className="hero">
-        <div>
+        <video autoPlay muted loop playsInline poster={imagePool.scentAtmosphere}>
+          <source src={imagePool.heroVideo} type="video/mp4" />
+        </video>
+        <div className="heroOverlay" />
+        <div className="heroContent">
           <p className="kicker">974 Perfumes Qatar</p>
           <h1>Oil-Based Inspired Perfumes in Qatar</h1>
           <p className="heroCopy">Affordable, long-lasting inspired perfume oils crafted for everyday wear and gifting.</p>
           <div className="heroActions"><a className="primaryBtn" href="#shop">Shop Best Sellers</a><a className="ghostBtn" href={`https://wa.me/${WHATSAPP}?text=${whatsappText(cart)}`} target="_blank" rel="noreferrer">Order on WhatsApp</a></div>
-          <div className="trustRow"><span>From QAR 45</span><span>Oil-Based</span><span>WhatsApp Ordering</span><span>Qatar Delivery</span></div>
         </div>
-        <div className="heroStage"><img src={imagePool.hero} alt="974 Perfumes bottle" /></div>
       </section>
+
+      <section className="trustBand"><div className="trustRow"><span>From QAR 45</span><span>Oil-Based</span><span>WhatsApp Ordering</span><span>Qatar Delivery</span></div></section>
 
       <section className="best"><div className="head"><h2>Best Sellers</h2><p>Our most ordered inspired oils and bundles.</p></div><div className="sellerRow">{bestSellers.map((p) => <Card key={p.id} p={p} add={add} premium />)}</div></section>
 
       <section id="shop" className="shop">
-        <div className="shopHead"><div><h2>Product Discovery</h2><p>Explore inspired perfume oils, gift sets, and premium air fresheners.</p></div><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search by name or notes" /></div>
+        <div className="shopHead"><div><h2>Product Discovery</h2><p>Explore oil-based inspired perfumes, gift sets, and premium air fresheners.</p></div><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search by name or notes" /></div>
         <div className="filters">{filters.map((c) => <button key={c} className={active === c ? "active" : ""} onClick={() => setActive(c)}>{c}</button>)}</div>
+        <div className="productIntro"><img src={imagePool.scentAtmosphere} alt="Scent atmosphere" /><div><h3>Curated scents for everyday rotation</h3><p>Discover long-lasting profiles across fresh, woody, amber, and gifting styles with fast Qatar delivery.</p></div></div>
         <div className="productGrid">{filtered.map((p) => <Card key={p.id} p={p} add={add} />)}</div>
       </section>
 
       <section className="gift"><div className="giftVisual"><img src={imagePool.gift} alt="Luxury Gift Set" /></div><div><p className="kicker">Gift Set Spotlight</p><h3>Luxury Gift Set — QAR 200</h3><p>A ready-to-gift perfume bundle for special occasions.</p><button className="primaryBtn" onClick={() => add(products.find((p) => p.id === 10))}>Add Gift Set</button></div></section>
 
-      <section className="social"><img src={imagePool.social} alt="Instagram preview for 974 Perfumes" /><div><h4>@974perfumes</h4><p>See latest drops, customer stories, and bundle announcements.</p><a className="ghostBtn" href={IG} target="_blank" rel="noreferrer">View Instagram</a></div></section>
+      <section className="social"><img src={imagePool.footerVisual} alt="Cinematic perfume atmosphere" /><div><h4>Born in Qatar. Built for modern scent culture.</h4><p>Oil-based inspired perfumes made for everyday wear, gifting, and local delivery.</p><a className="ghostBtn" href={IG} target="_blank" rel="noreferrer">View Instagram</a></div></section>
     </main>
 
     <footer className="footer"><p>WhatsApp: <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer">+974 3063 0135</a> • Instagram: <a href={IG} target="_blank" rel="noreferrer">@974perfumes</a></p><small>Inspired perfume oils. Not affiliated with any designer brands.</small></footer>
